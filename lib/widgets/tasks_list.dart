@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'tasks_tile.dart';
-import '../modal/task.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/modal/task_data.dart';
 
 class TasksList extends StatefulWidget {
-  final List<Task> tasks;
-
-  TasksList(this.tasks);
-
   @override
   _TasksListState createState() => _TasksListState();
 }
