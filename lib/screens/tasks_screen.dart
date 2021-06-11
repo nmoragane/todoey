@@ -5,12 +5,7 @@ import '../widgets/tasks_list.dart';
 import '../screens/add_task_screen.dart';
 import '../modal/task.dart';
 
-class TasksScreen extends StatefulWidget {
-  @override
-  _TasksScreenState createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
+class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +59,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 ),
                 Text(
-                  '${Provider.of<TaskData>(context).tasks.length} Tasks',
+                  '${Provider.of<TaskData>(context).taskCount} Tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
@@ -83,7 +78,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 ),
                 color: Colors.white,
               ),
-              child: TasksList(tasks),
+              child: TasksList(),
             ),
           ),
         ],

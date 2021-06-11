@@ -3,27 +3,27 @@ import 'tasks_tile.dart';
 import 'package:provider/provider.dart';
 import 'package:todoey/modal/task_data.dart';
 
-class TasksList extends StatefulWidget {
-  @override
-  _TasksListState createState() => _TasksListState();
-}
-
-class _TasksListState extends State<TasksList> {
+class TasksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        return TaskTile(
-          taskTitle: widget.tasks[index].name,
-          isChecked: widget.tasks[index].isDone,
-          checkboxCallback: (checkboxState) {
-            setState(() {
-              widget.tasks[index].toggleDone();
-            });
+    return Consumer<TaskData>(
+      builder: (context, taskdata, child) {
+        return ListView.builder(
+          itemBuilder: (context, index) {
+            return TaskTile(
+              taskTitle: taskdata.tasks[index].name,
+              isChecked: taskdata.tasks[index].isDone,
+              checkboxCallback: (checkboxState) {
+                taskdata.updateTask(taskdata.tasks[index]);
+              },
+              longPressCallback: () {
+                taskdata.deleteTask(taskdata.tasks[index]);
+              },
+            );
           },
+          itemCount: taskdata.taskCount,
         );
       },
-      itemCount: widget.tasks.length,
     );
   }
 }
